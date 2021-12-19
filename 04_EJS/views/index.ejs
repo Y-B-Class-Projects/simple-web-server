@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!-- views/index.ejs -->
+<html lang="en">
+
+<head>
+    <% include partials/head %>
+
+        <style>
+            .grid-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                grid-gap: 30px;
+            }
+
+            .grid-item {
+                font-size: 20px;
+                text-align: center;
+            }
+        </style>
+</head>
+
+<body class="container">
+    <header>
+        <% include partials/header %>
+    </header>
+    <main>
+        <h2>Students</h2>
+
+        <div class="grid-container">
+            <% drinks.forEach(function(s) { %>
+                <div class="grid-item">
+                    <%include partials/student%>
+                </div>
+                <% }); %>
+
+        </div>
+    </main>
+    <footer>
+        <% include partials/footer %>
+    </footer>
+</body>
+
+</html>
