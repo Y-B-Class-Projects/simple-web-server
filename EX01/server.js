@@ -1,14 +1,9 @@
-let path = require('path');
-let express = require('express');
-let app = express();
+var http = require('http');
+var port = 8080;
 
-app.use(express.static(path.join(__dirname, 'public')));
-
-app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, 'public/main.html'))
+http.createServer(function (req, res) {    
     console.log("Hi");
-});
-
-app.listen(8080, function () {
-    console.log('Example app listening on port 8080!');
-});
+    res.writeHead( 200, { 'Set-Cookie' : 'mycookie=test', 'Content-Type' : 'text/plain' });
+    res.write("Hi");
+    res.end();
+}).listen(port);

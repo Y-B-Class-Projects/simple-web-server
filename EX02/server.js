@@ -1,19 +1,19 @@
-let path = require('path');
-let express = require('express');
-let app = express();
+var http = require('http');
+var port = 3000;
 
-app.use(express.static(path.join(__dirname, 'public')));
+var current = new Date();
 
-app.get('/page', function (req, res) {
-    //res.sendFile(path.join(__dirname, 'public/main.html'));
-    if ((req.query.fname == 'admin' && req.query.lname == 'admin') ||
-        (req.query.fname == 'root' && req.query.lname == 'root') ||
-        (req.query.fname == 'jct' && req.query.lname == 'jct'))
-            res.send("Welcome " + req.query.fname + " " + req.query.lname );
-    else
-        res.send("Access denied!");
-});
+http.createServer(function (req, res) {    
+    res.writeHead( 200, "ok", { 'Content-Type': 'text/plain',
+                                    'Server': 'MYNODE.JS',
+                                    'Date': current.toGMTString() ,
+                                    'X-Powered-By': 'NODE',
+                                    'Cache-Control': 'no-cache, no-store',
+                                    'Expires': '-1',
+                                    'Content-Type': 'text/html; charset=utf-8',
+                                    'Content-Length': 14990
+     });
+    res.write('Hello World\n');
+    res.end();
+}).listen(port);
 
-app.listen(8080, function () {
-    console.log('Example app listening on port 8080!');
-});
